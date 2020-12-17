@@ -7,23 +7,23 @@ import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.Map;
 
-public enum SortingsPredicate {
+public enum SortingPredicates {
     sort_by {
         public Comparator<JsonNode> compare(String field) {
             return Comparator.comparing(j -> j.get(field).asText());
         }
     };
 
-    private static final Map<String, SortingsPredicate> nameToValueMap =
+    private static final Map<String, SortingPredicates> nameToValueMap =
             new HashMap<>();
 
     static {
-        for (SortingsPredicate value : EnumSet.allOf(SortingsPredicate.class)) {
+        for (SortingPredicates value : EnumSet.allOf(SortingPredicates.class)) {
             nameToValueMap.put(value.name(), value);
         }
     }
 
-    public static SortingsPredicate forName(String name) {
+    public static SortingPredicates forName(String name) {
         return nameToValueMap.get(name);
     }
 
